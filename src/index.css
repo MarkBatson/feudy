@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "lato", Helvetica, sans-serif;
+
+  --color-dark-blue: #385d65;
+  --color-cream: #fff5e1;
+  --color-orange: #fc5b46;
+}
+
+@layer base {
+  html {
+    @apply bg-dark-blue text-white text-center font-sans font-bold
+  }
+}
