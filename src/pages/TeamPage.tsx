@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TeamName from "../components/TeamName";
-import logo from '../assets/logo.png';
 import home from "../assets/F.svg";
 
 export default function TeamPage() {
