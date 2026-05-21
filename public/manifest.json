@@ -1,0 +1,15 @@
+{
+  "name": "Feudy",
+  "short_name": "Feudy",
+  "display": "standalone",
+  "start_url": "/",
+  "background_color": "#385d65",
+  "theme_color": "#385d65",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

@@ -15,7 +15,7 @@ export default function TeamName() {
           onKeyDown={e => e.key === 'Enter' && setEditing(false)}
         />
       ) : (
-        <h1 onClick={() => setEditing(true)}>{teamName}</h1>
+        <h1 onClick={() => setEditing(true)} className="pt-30">{teamName}</h1>
       )}
     </div>
   )
