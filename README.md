@@ -1,73 +1,54 @@
-# React + TypeScript + Vite
+# Feudy
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Family Feud-style trivia game where a host reads questions and teams track their scores on movbile devices.
 
-Currently, two official plugins are available:
+Live at [www.feudygame.com](https://www.feudygame.com)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Tech Stack
 
-## React Compiler
+![Feudy Tech Diagram](public/feudy.drawio.png)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### [React 19](https://react.dev/)
 
-## Expanding the ESLint configuration
+UI library used to build all game screens — the home page, host view, and team score tracker. Uses the latest concurrent rendering features.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### [TypeScript 6](https://www.typescriptlang.org/)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Provides static typing across the entire codebase. Strict mode is enabled with `noUnusedLocals` and `noUnusedParameters` enforced at build time.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### [Vite 8](https://vite.dev/)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+Build tool and dev server with hot module replacement (HMR). Handles bundling for production via `npm run build`.
+
+### [React Router 7](https://reactrouter.com/)
+
+Client-side routing between the three app views: `/` (home), `/host` (question display), and `/team` (score tracker).
+
+### [Tailwind CSS 4](https://tailwindcss.com/)
+
+Utility-first CSS framework for all styling. The custom color palette (`dark-blue`, `cream`, `orange`) is defined via the `@theme` directive in `src/index.css`.
+
+### [Supabase](https://supabase.com/)
+
+Provides the PostgreSQL database that stores questions and answers. The client is initialized in `src/lib/supabase.ts` using `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` from `.env`.
+
+### [ESLint 10](https://eslint.org/)
+
+Linting via flat config (`eslint.config.js`). Includes `eslint-plugin-react-hooks` and `eslint-plugin-react-refresh` for React-specific rules.
+
+## Getting Started
+
+```bash
+npm install
+cp .env.example .env   # add your Supabase credentials
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Commands
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+| Command           | Description                           |
+| ----------------- | ------------------------------------- |
+| `npm run dev`     | Start the Vite dev server with HMR    |
+| `npm run build`   | Type-check, then build for production |
+| `npm run lint`    | Run ESLint                            |
+| `npm run preview` | Preview the production build locally  |
